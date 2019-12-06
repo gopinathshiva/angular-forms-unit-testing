@@ -7,12 +7,12 @@ describe('PlaygroundTemplateDrivenFormsComponent', () => {
   let component: PlaygroundTemplateDrivenFormsComponent;
   let fixture: ComponentFixture<PlaygroundTemplateDrivenFormsComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [AppModule]
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(async(() => {
     fixture = TestBed.createComponent(PlaygroundTemplateDrivenFormsComponent);
@@ -21,6 +21,7 @@ describe('PlaygroundTemplateDrivenFormsComponent', () => {
   }));
 
   it('should not valid', () => {
+    console.log(component.ngForm.form.controls)
     expect(component.ngForm.form.valid).not.toBeTruthy();
   });
 
@@ -28,7 +29,7 @@ describe('PlaygroundTemplateDrivenFormsComponent', () => {
     const inputElement = document.getElementById("first");
     inputElement.value="asdf";
     inputElement.dispatchEvent(new Event('input'));
-    console.log(component.ngForm.form.controls.first.value);
+    // console.log(component.ngForm.form.controls.first.value);
     expect(component.ngForm.form.valid).toBeTruthy();
     inputElement.value="";
     inputElement.dispatchEvent(new Event('input'));
