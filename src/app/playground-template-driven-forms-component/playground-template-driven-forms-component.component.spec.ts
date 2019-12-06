@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { AppModule } from '../app.module';
 
 import { PlaygroundTemplateDrivenFormsComponent } from './playground-template-driven-forms-component.component';
@@ -14,17 +14,23 @@ describe('PlaygroundTemplateDrivenFormsComponent', () => {
     .compileComponents();
   }));
 
-  beforeEach(() => {
+  beforeEach(async(() => {
     fixture = TestBed.createComponent(PlaygroundTemplateDrivenFormsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
+  }));
 
   it('should not valid', () => {
-    fixture.whenStable().then( () => {
-      console.log(component.ngForm.form.valid);
-      expect(component.ngForm.form.valid).not.toBeTruthy();
-    })
-    // expect(component.ngForm.form.valid).not.toBeTruthy();
+    expect(component.ngForm.form.valid).not.toBeTruthy();
+  });
+
+  it('should valid', () => {
+    const inputElement = document.getElementById("first");
+    inputElement.value="asdf";
+    inputElement.dispatchEvent(new Event('input'));
+    expect(component.ngForm.form.valid).toBeTruthy();
+    inputElement.value="";
+    inputElement.dispatchEvent(new Event('input'));
+    expect(component.ngForm.form.valid).not.toBeTruthy();
   });
 });
