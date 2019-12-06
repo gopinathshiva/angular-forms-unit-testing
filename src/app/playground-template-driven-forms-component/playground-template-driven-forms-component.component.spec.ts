@@ -25,6 +25,6 @@ describe('PlaygroundTemplateDrivenFormsComponent', () => {
       console.log(component.ngForm.form.valid);
       expect(component.ngForm.form.valid).not.toBeTruthy();
     })
-    expect(component.ngForm.form.valid).not.toBeTruthy();
+    // expect(component.ngForm.form.valid).not.toBeTruthy();
   });
 });
