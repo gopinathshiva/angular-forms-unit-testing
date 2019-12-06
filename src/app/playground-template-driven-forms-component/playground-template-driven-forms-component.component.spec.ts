@@ -28,6 +28,7 @@ describe('PlaygroundTemplateDrivenFormsComponent', () => {
     const inputElement = document.getElementById("first");
     inputElement.value="asdf";
     inputElement.dispatchEvent(new Event('input'));
+    console.log(component.ngForm.form.controls.first.value);
     expect(component.ngForm.form.valid).toBeTruthy();
     inputElement.value="";
     inputElement.dispatchEvent(new Event('input'));
